@@ -44,4 +44,23 @@ public class GuestbookServiceTests {
 
         resultDTO.getPageList().forEach( i-> System.out.println(i));
     }
+
+    @Test
+    public void testSearch(){
+
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .page(1)
+                .size(10)
+                .type("tc")
+                .keyword("30")
+                .build();
+
+        PageResultDTO<GuestbookDTO, Guestbook> resultDTO = service.getList(pageRequestDTO);
+
+        List<GuestbookDTO> dtoList = resultDTO.getDtoList();
+        dtoList.stream().forEach(i-> System.out.println(i));
+        System.out.println("===============");
+        List<Integer> pageList = resultDTO.getPageList();
+        pageList.stream().forEach(i-> System.out.println(i));
+    }
 }

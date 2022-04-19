@@ -55,7 +55,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>info message</p>
+                        <p th:if="${registerMSG}">[[${registerMSG}]]번이 등록되었습니다.</p>
+                        <p th:if="${deleteMSG}">[[${deleteMSG}]]번이 삭제되었습니다.</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
@@ -66,11 +67,14 @@
         </div>
 
         <script th:inline="javascript">
-            var msg = [[${msg}]];
-
+            var msg = [[${registerMSG}]];
+            var msg1 = [[${deleteMSG}]];
             console.log(msg);
 
             if(msg){
+                $(".modal").modal();
+                }
+            if(msg1){
                 $(".modal").modal();
                 }
         </script>
