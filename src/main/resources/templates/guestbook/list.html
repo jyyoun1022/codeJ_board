@@ -4,6 +4,76 @@
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
 
     <th:block th:fragment="content">
-        <h1>게시판 목록</h1>
+       <h1 class="mt-2">방명록 리스트</h1>
+        <span>
+            <a th:href="@{/guestbook/register}">
+                <button type="button" class="btn btn-outline-primary">등록하기</button>
+            </a>
+        </span>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">순번(최신순)</th>
+                <th scope="col">제목</th>
+                <th scope="col">작성자</th>
+                <th scope="col">등록일</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="dto : ${result.dtoList}">
+                <th scope="row">
+                    <a th:href="@{/guestbook/read(gno=${dto.gno}, page=${result.page})}">[[${dto.gno}]]</a></th>
+                <th>[[${dto.title}]]</th>
+                <th>[[${dto.writer}]]</th>
+                <th>[[${#temporals.format(dto.regDate,'yyyy/MM/dd')}]]</th>
+            </tr>
+            </tbody>
+        </table>
+
+        <ul class="pagination h-100 justify-content-center align-items-center">
+            <li class="page-item" th:if="${result.prev}">
+                <a class="page-link"  th:href="@{/guestbook/list(page=${result.start-1})}" tabindex="-1">이전 페이지</a>
+            </li>
+
+            <li th:class=" 'page-item ' + ${result.page == page? 'active':''}" th:each="page : ${result.pageList}">
+                <a class="page-link" th:href="@{/guestbook/list(page=${page})}" >[[${page}]]</a>
+            </li>
+            <li class="page-item" th:if="${result.next}">
+                <a th:href="@{/guestbook/list(page=${result.end+1})}" class="page-link">다음 페이지</a>
+            </li>
+
+        </ul>
+
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">info</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>info message</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                        <button type="button" class="btn btn-primary">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script th:inline="javascript">
+            var msg = [[${msg}]];
+
+            console.log(msg);
+
+            if(msg){
+                $(".modal").modal();
+                }
+        </script>
+
     </th:block>
 </th:block>

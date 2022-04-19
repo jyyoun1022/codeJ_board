@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
+
+    <th:block th:fragment="content">
+
+        <h1 class="mt-4">방명록 등록 페이지</h1>
+
+        <form th:action="@{/guestbook/register}" th:method="post">
+            <div class="form-group">
+                <label>제목</label>
+                <input type="text" class="form-control" name="title" placeholder="제목을 입력하세요.">
+            </div>
+            <div class="form-group">
+                <label>내용</label>
+                <textarea class="form-control" rows="5" name="content" placeholder="내용을 입력하세요."></textarea>
+            </div>
+            <div>
+                <label>작성자</label>
+                <input type="text" class="form-control" name="writer" placeholder="작성자를 입력하세요.">
+            </div>
+            <br/>
+            <button type="submit" class="btn btn-primary">저장하기</button>
+        </form>
+    </th:block>
+</th:block>
