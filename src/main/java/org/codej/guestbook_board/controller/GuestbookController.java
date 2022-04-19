@@ -2,10 +2,8 @@ package org.codej.guestbook_board.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.codej.dto.GuestbookDTO;
-import org.codej.dto.PageRequestDTO;
-import org.codej.dto.PageResultDTO;
-import org.codej.guestbook_board.entity.Guestbook;
+import org.codej.guestbook_board.dto.GuestbookDTO;
+import org.codej.guestbook_board.dto.PageRequestDTO;
 import org.codej.guestbook_board.service.GuestbookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,8 +1,8 @@
 package org.codej.guestbook_board.service;
 
-import org.codej.dto.GuestbookDTO;
-import org.codej.dto.PageRequestDTO;
-import org.codej.dto.PageResultDTO;
+import org.codej.guestbook_board.dto.GuestbookDTO;
+import org.codej.guestbook_board.dto.PageRequestDTO;
+import org.codej.guestbook_board.dto.PageResultDTO;
 import org.codej.guestbook_board.entity.Guestbook;
 
 public interface GuestbookService {
