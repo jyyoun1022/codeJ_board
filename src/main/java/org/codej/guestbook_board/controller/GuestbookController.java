@@ -28,12 +28,12 @@ public class GuestbookController {
     }
 
     @GetMapping("/list")
-    public String list(PageRequestDTO requestDTO, Model model){
+    public void list(PageRequestDTO requestDTO, Model model){
         //여기에 PageRequestDTO를 파라미터로 해준다면 page,size라는 파라미터를 전달하면 PageRequestDTO객체로 자동으로 수집됩니다.
 
         model.addAttribute("result",service.getList(requestDTO));
 
-        return "/guestbook/list";
+
     }
 
     @GetMapping("/register")
@@ -75,6 +75,9 @@ public class GuestbookController {
 
         redirectAttributes.addAttribute("page",requestDTO.getPage());
         redirectAttributes.addAttribute("gno",dto.getGno());
+        redirectAttributes.addAttribute("type",requestDTO.getType());
+        redirectAttributes.addAttribute("keyword",requestDTO.getKeyword());
+
 
         return "redirect:/guestbook/read";
     }
